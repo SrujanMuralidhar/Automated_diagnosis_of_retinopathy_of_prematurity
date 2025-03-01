@@ -2,7 +2,7 @@
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python)  
 ![TensorFlow](https://img.shields.io/badge/Framework-TensorFlow%20%7C%20PyTorch-orange?logo=tensorflow)  
-![License](https://img.shields.io/badge/License-MIT-green)  
+
 
 ## 📌 Overview  
 This project automates **Retinopathy of Prematurity (ROP) detection and staging** using deep learning techniques.  
