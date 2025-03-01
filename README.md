@@ -1,62 +1,74 @@
-# RetiScan: Automated Diagnosis of Retinopathy of Prematurity (ROP)
+# 🏥 Automated Diagnosis of Retinopathy of Prematurity (ROP)  
 
-## Overview
-RetiScan is a deep learning-based system designed to assist in the diagnosis and staging of Retinopathy of Prematurity (ROP). The project leverages computer vision techniques and state-of-the-art neural networks to analyze retinal images, enabling automated detection and classification of ROP stages. The goal is to provide a reliable tool to support ophthalmologists in early diagnosis and treatment, potentially reducing the risk of blindness in premature infants.
+![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python)  
+![TensorFlow](https://img.shields.io/badge/Framework-TensorFlow%20%7C%20PyTorch-orange?logo=tensorflow)  
+![License](https://img.shields.io/badge/License-MIT-green)  
 
----
+## 📌 Overview  
+This project automates **Retinopathy of Prematurity (ROP) detection and staging** using deep learning techniques.  
+It employs **U-Net** for image segmentation and **ResNet50** for classification, achieving:  
 
-## Features
-- **Binary Classification:** Determines if an image shows signs of ROP (ROP vs. No ROP).
-- **Stage Classification:** Identifies the severity of ROP into three stages:
-  - Stage 1
-  - Stage 2
-  - Stage 3
-- **Segmentation:** Employs U-Net models to generate masks for:
-  - Blood vessels
-  - Ridge structures
-- **Performance Metrics:**
-  - **Binary Classification Model (ResNet50):**
-    - Accuracy: 98.40%
-    - Precision: 98.59%
-    - Recall: 97.22%
-    - F1 Score: 97.90%
-  - **Stage Classification Model (ResNet50):**
-    - Accuracy: 92.80%
-    - Precision: 92.94%
-    - Recall: 92.89%
-    - F1 Score: 92.74%
-  - **Segmentation Model (U-Net):**
-    - IoU (Blood vessels): 0.7532
-    - IoU (Ridges): 0.7110
+✅ **98.40% accuracy** in ROP detection  
+✅ **92.80% accuracy** in ROP stage classification  
+
+## ✨ Features  
+🚀 **Blood Vessel & Ridge Segmentation** using U-Net  
+🔬 **Adaptive Image Enhancement** with Sigmoid Contrast Adjustment  
+🤖 **Deep Learning Classification** via Fine-Tuned ResNet50  
+📊 **High-Accuracy Screening Tool** for Real-World Clinical Use  
 
 ---
 
-## Data
-- **Dataset Composition:**
-  - 400 high-quality images per ROP stage for training.
-  - 80-20 train-test split.
-  - Additional 2000 labeled images for binary classification training.
-- **Image Preprocessing:**
-  - Adaptive sigmoid enhancement for contrast improvement.
-  - Separate color-channel mapping for segmentation outputs (blood vessels and ridges).
+## 🗂 Dataset  
+📍 **Source**: Narayana Nethralaya, Bengaluru, India 🇮🇳  
+📸 **Size**: 4,185 patient records with **high-resolution fundus images**  
+📝 **Annotations**: ROP Stage, Zone, Plus Disease, and Treatment Decisions  
 
 ---
 
-## Model Architecture
-1. **Segmentation:**
-   - **Model:** U-Net
-   - **Purpose:** Generate masks for blood vessels and ridge structures.
-2. **Binary Classification:**
-   - **Model:** Fine-tuned ResNet50
-   - **Purpose:** Classify images as ROP or No ROP.
-3. **Stage Classification:**
-   - **Model:** Fine-tuned ResNet50
-   - **Purpose:** Classify ROP severity into predefined stages.
+## 🔬 Methodology  
+### 🏗 Preprocessing  
+- Resizing images to **512×512 pixels**  
+- Removing **non-temporal images** using **U-Net-based optic disc segmentation**  
+
+### 🔍 Feature Segmentation  
+- **🩸 Blood Vessel Segmentation** using U-Net on original images  
+- **🌀 Ridge Segmentation** using **Gabor-filter-enhanced U-Net**  
+
+### 🔄 Classification  
+- **📌 ROP Detection**: ResNet50 classifies **ROP vs. No ROP**  
+- **📌 Stage-wise Classification**: Further classification into **Stage 1, 2, and 3** if ROP is detected  
 
 ---
 
-## Training Details
-- **Hardware:** RTX 4060 (8GB VRAM)
-- **Optimizer:** Adaptive learning rate scheduler in PyTorch.
-- **Metrics:** Accuracy, Precision, Recall, F1 Score, IoU.
+## 📈 Performance  
+
+### 🏥 ROP vs. No ROP Classification  
+
+| Model            | 🎯 Accuracy | 🎯 Precision | 🔍 Recall | 📊 F1 Score |
+|-----------------|------------|-------------|-----------|------------|
+| **⚡ ResNet50**  | **98.40%**  | **98.59%**  | **97.22%** | **97.90%** |
+| RegNet         | 94.68%     | 93.66%     | 92.36%    | 93.01%     |
+| EfficientNetV2S | 95.21%     | 95.99%     | 94.68%    | 95.17%     |
+| AlexNet        | 91.22%     | 91.31%     | 90.45%    | 90.82%     |
+| GoogleNet      | 94.41%     | 94.16%     | 94.04%    | 94.10%     |
+
+### 🔍 Stage-wise ROP Classification  
+
+| Model            | 🎯 Accuracy | 🎯 Precision | 🔍 Recall | 📊 F1 Score |
+|-----------------|------------|-------------|-----------|------------|
+| **⚡ ResNet50**  | **92.80%**  | **92.94%**  | **92.89%** | **92.74%** |
+| RegNet         | 89.83%     | 89.82%     | 89.82%    | 89.83%     |
+| EfficientNetV2S | 89.41%     | 89.47%     | 89.98%    | 89.52%     |
+| AlexNet        | 83.47%     | 83.55%     | 83.46%    | 83.50%     |
+| GoogleNet      | 84.75%     | 84.91%     | 84.70%    | 84.66%     |
+
+---
+
+## ⚙️ Installation & Requirements  
+### 📦 Dependencies  
+🔹 Python 3.x  
+🔹 TensorFlow / PyTorch  
+🔹 OpenCV, NumPy, Pandas, Matplotlib  
+🔹 Scikit-learn  
 
